@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        .a{
+            width: 780px;
+            height: 300px;
+            border: 1px solid black;
+            margin: auto;
+            position: relative;
+            overflow: hidden;
+        }
+        .a div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            left: 780px;
+        }
+        .a div:nth-child(1){
+            background-image: url("../Js/img/109951164691430584.jpg");
+        }
+        .a div:nth-child(2){
+            background-image: url("../Js/img/109951164691431421.jpg");
+        }
+        .a div:nth-child(3){
+            background-image: url("../Js/img/109951164691443526.jpg");
+        }
+        ul{
+            list-style: none;
+            position: absolute;
+            bottom: 2px;
+            right: 40px;
+        }
+        li{
+            width: 10px;
+            height: 10px;
+            background-color: red;
+            border-radius: 50px;
+            float: left;
+            margin-left: 10px;
+        }
+        @keyframes in {
+           from{
+               left: 780px;
+           }to{
+            left: 0px;
+                       }
+        }
+        .a .movein{
+            animation: in 1s;
+            left: 0;
+        }
+        @keyframes out {
+            from{
+                left: 0;
+            }to{
+            left: -780px;
+                         }
+        }
+        .a .moveout{
+            animation: out 1s;
+            left: 780px;
+        }
+    </style>
+<body>
+    <div class="a">
+        <div class="moveout"></div>
+        <div class="movein"></div>
+        <div class="moveout"></div>
+        <ul>
+            <li ></li>
+            <li ></li>
+            <li ></li>
+        </ul>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+       $(function () {
+           $("ul li").click(function () {
+               var ind =$(this).index()
+               $(".a div").eq(ind).addClass("movein").removeClass("moveout").siblings("div").removeClass("movein").addClass("moveout")
+           })
+       })
+      var i =0;
+       var intereval = setInterval(function () {
+           if(i>2){
+               i=0;
+           }
+           $(".a div").eq(i).addClass("movein").removeClass("moveout").siblings("div").removeClass("movein").addClass("moveout");
+            i++;
+       },3000)
+       $(".a div").mouseover(function () {
+           clearInterval(intereval)
+       })
+       $(".a div").mouseleave(function () {
+           intereval = setInterval(function () {
+               if(i>2){
+                   i=0;
+               }
+               $(".a div").eq(i).addClass("movein").removeClass("moveout").siblings("div").removeClass("movein").addClass("moveout");
+               i++;
+           },3000)
+       })
+
+    </script>
+</body>
+</html>
