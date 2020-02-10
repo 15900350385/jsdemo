@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    .a{
+        width: 880px;
+        height: 300px;
+        border: 1px solid black;
+        margin: auto;
+
+
+    }
+    .a .c {
+        width: 720px;
+        height: 100%;
+
+        float: left;
+    }
+    .a  .b{
+        width: 80px;
+        height: 100%;
+
+        float: left;
+    }
+
+    .a div:nth-child(1){
+        width: 720px;
+        height: 100%;
+        background-image: url("../Js/img/109951164691430584.jpg");
+    }
+    .a div:nth-child(2){
+        background-image: url("../Js/img/109951164691431421.jpg");
+    }
+    .a div:nth-child(3){
+        background-image: url("../Js/img/109951164691443526.jpg");
+    }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <div class="c"></div>
+        <div class="b"></div>
+        <div class="b"></div>
+    </ul>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            $(".a div").click(function () {
+                $(this).width("720px").siblings().width("80")
+            })
+        })
+        </script>
+</body>
+</html>
