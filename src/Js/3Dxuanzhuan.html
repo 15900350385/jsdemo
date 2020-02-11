@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<style>
+    *{
+        padding: 0;
+        margin: 0;
+    }
+    #a{
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        position: absolute;
+        left: 500px;
+        top: 200px;
+        perspective: 800px;
+    }
+    ul{
+        width: 300px;
+        height: 300px;
+        list-style: none;
+        transform-style: preserve-3d;
+    }
+    li{
+        width: 300px;
+        height: 300px;
+        border: 1px solid black;
+        position: absolute;
+    }
+    ul li:nth-child(1){
+        transform:translateX(-300px) rotateY(90deg);
+        transform-origin: right;
+    }
+    ul li:nth-child(2){
+        transform:translateX(300px) rotateY(-90deg);
+        transform-origin: left;
+    }
+    ul li:nth-child(3){
+        transform:translateY(-300px) rotateX(-90deg);
+        transform-origin: bottom;
+    }
+    ul li:nth-child(4){
+        transform:translateY(300px) rotateX(90deg);
+        transform-origin: top;
+    }
+    ul li:nth-child(5){
+       transform: translateZ(300px);
+    }
+</style>
+<body>
+    <div id="a">
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+            <li>5</li>
+            <li>6</li>
+        </ul>
+    </div>
+</body>
+</html>

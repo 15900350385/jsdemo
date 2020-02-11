@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        #a{
+            width: 300px;
+            height: 300px;
+            border: 1px solid black;
+            position: absolute;
+        }
+        #b{
+            height: 40px;
+            border-bottom: 1px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="a">
+        <div id="b">标题</div>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+          init();
+          $(window).resize(init);
+          function init() {
+            var bleft = ($(window).width()-$("#a").width())/2;
+            var btop = ($(window).height()-$("#a").height())/2;
+            $("#a").css({
+                "left":bleft+"px",
+                "top":btop+"px"
+            })
+          }
+
+
+              $("#a #b").mousedown(function (e) {
+                  var before_left = e.pageX;
+                  var before_top = e.pageY;
+                  var left_offset = $("#a").offset().left;
+                  var top_offset = $("#a").offset().top;
+                  var flag = true;
+                      $(window).mousemove(function (ee) {
+                          if (flag) {
+                              var after_left = ee.pageX;
+                              var after_top = ee.pageY;
+                              $("#a").css({
+                                  "left": ((after_left - before_left) + left_offset) + "px",
+                                  "top": ((after_top - before_top) + top_offset) + "px"
+                              })
+                          }
+
+
+                      }).mouseup(function () {
+                          flag=false;
+                      })
+
+
+              })
+
+           })
+    </script>
+</body>
+</html>

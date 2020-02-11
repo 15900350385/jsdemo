@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+        }
+        #a{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+            perspective: 800px;
+        }
+        #a .a{
+            width: 100px;
+            height: 100px;
+            border: 1px solid black;
+            position: absolute;
+        }
+        #a .a img{
+            position: absolute;
+        }
+    </style>
+<body>
+    <div id="a">
+            <div class="a">
+                <img src="img/work-left-01.png">
+                <img src="img/Work01.png">
+                <img src="img/Work02.png">
+                <img src="img/Work03.png">
+                <img src="img/Work01.png">
+                <img src="img/Work02.png">
+                <img src="img/Work03.png">
+            </div>
+    </div>
+    <script src="jquery-3.4.1.min.js"></script>
+    <script>
+        $(function () {
+            // var wrapx = 0;
+            // var wrapy = 0
+            $(window).mousedown(function (e) {
+                var before_left = e.pageX;
+                var before_top = e.pageY;
+                var flag = true;
+                $(window).mousemove(function (ee) {
+                    if (flag) {
+                        var after_left = ee.pageX;
+                        var after_top = ee.pageY;
+                        var aleftt = after_left - before_left /*+ wrapx;*/
+                        var atop = after_top - before_top/* + wrapy;*/
+                        $("#a .a").css({
+                            transform: "rotateX(" + atop + "deg) rotateY(" + aleftt + "deg)"
+                        })
+                    }
+                }).mouseup(function () {
+                    flag = false;
+                })
+        })
+
+                init();
+                $(window).resize(init);
+                function init() {
+                    var bleft = ($(window).width() - $("#a").width()) / 2;
+                    var btop = ($(window).height() - $("#a").height()) / 2;
+                    $("#a").css({
+                        "left": bleft + "px",
+                        "top": btop + "px"
+                    })
+                    $(".a img").each(function (index, element) {
+                        var deg = 360 / $(".a img").length
+                        $(element).css({
+                            transform: "rotateY(" + index * deg + "deg) translateZ(300px)",
+                            transition: "1s" + index + "s"
+                        })
+                    })
+                }
+
+
+
+
+        })
+        </script>
+        </body>
+</html>
